@@ -44,13 +44,13 @@ apiChangeRouter.route('/cart')
   });
 
 // Favorites
-apiChangeRouter.put('/favorite', verifyAccessToken, async (req, res) => {
-  try {
-    await Sock.update({ favorite: req.body.favorite }, { where: { id: req.body.id } });
-    res.sendStatus(200);
-  } catch (err) {
-    res.status(500).json(err.message);
-  }
-});
+// apiChangeRouter.put('/favorite', verifyAccessToken, async (req, res) => {
+//   try {
+//     await Sock.update({ favorite: req.body.favorite }, { where: { id: req.body.id } });
+//     res.sendStatus(200);
+//   } catch (err) {
+//     res.status(500).json(err.message);
+//   }
+// });
 
 export default apiChangeRouter;

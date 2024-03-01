@@ -1,15 +1,35 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Container } from 'react-bootstrap';
 import CartItem from '../ui/CartItem';
+import decor from '../../../db/models/decor';
 
 export default function CartPage({ cartItems }) {
   const [items, setItems] = useState(cartItems);
 
-  const deleteHandler = async (CartItemId) => {
-    const response = await axios.delete('/api/change/cart', { id: CartItemId });
+  // const deleteHandler = async (CartItemId) => {
+  //   const response = await axios.delete('/api/change/cart', { id: CartItemId });
+  //   if (response.status === 200) {
+  //     setItems((prev) => prev.filter((cartItem) => cartItem.id !== CartItemId));
+  //   } else if (response.status === 500) {
+  //     const message = await response.data.json();
+  //     console.log(message);
+  //   }
+  // };
+
+  const deleteHandler = async (decorId) => {
+    console.log(decorId);
+    const response = await fetch('/api/change/cart', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: {
+        id: decorId,
+        favorite: false,
+      },
+    });
     if (response.status === 200) {
-      setItems((prev) => prev.filter((cartItem) => cartItem.id !== CartItemId));
+      setItems((prev) => prev.filter((el) => el.id !== decorId));
     } else if (response.status === 500) {
       const message = await response.data.json();
       console.log(message);

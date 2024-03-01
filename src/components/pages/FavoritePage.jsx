@@ -6,6 +6,7 @@ export default function FavoritePage({ socks }) {
   const [items, setItems] = useState(socks);
 
   const deleteHandler = async (favItemId) => {
+    console.log(favItemId);
     const response = await fetch('/api/change/favorite', {
       method: 'PUT',
       headers: {
@@ -27,9 +28,14 @@ export default function FavoritePage({ socks }) {
   return (
     <Container>
       <h1 style={{ textAlign: 'center', margin: '20px 0' }}>Избранное</h1>
-      <div style={{
-        minHeight: '500px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
-      }}
+      <div
+        style={{
+          minHeight: '500px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          flexDirection: 'row',
+        }}
       >
         {items.length
           ? (
